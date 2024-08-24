@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Country API
+  description: A sample API to illustrate OpenAPI concepts
+paths:
+  /countries:
+    get:
+      summary: List of countries
+      operationId: listCountries
+      tags:
+        - countries
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCountries'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCountries'
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    ArrayOfCountries:
+      type: array
+      items:
+        $ref: '#/components/schemas/Country'
+    Country:
+      type: object
+      properties:
+        countryId:
+          type: string
+        countryName:
+          type: string
+        regionId:
+          type: integer
+          format: int64
+
+#https://www.baeldung.com/java-openapi-generator-server
